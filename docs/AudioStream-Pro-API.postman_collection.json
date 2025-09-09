@@ -1,0 +1,478 @@
+{
+  "info": {
+    "name": "AudioStream Pro API",
+    "description": "Complete API collection for AudioStream Pro SaaS platform",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{authToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signin",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signin"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "forgot-password"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Updated\",\n  \"bio\": \"Music enthusiast\",\n  \"preferences\": {\n    \"emailNotifications\": true,\n    \"autoPlay\": false\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Favorites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/me/favorites",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me", "favorites"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add to Favorites",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"soundId\": \"64f8a1b2c3d4e5f6a7b8c9d0\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/me/favorites",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me", "favorites"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sounds",
+      "item": [
+        {
+          "name": "Get All Sounds",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sounds?page=1&limit=20&category=electronic&search=beat",
+              "host": ["{{baseUrl}}"],
+              "path": ["sounds"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "category",
+                  "value": "electronic"
+                },
+                {
+                  "key": "search",
+                  "value": "beat"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Sound by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sounds/64f8a1b2c3d4e5f6a7b8c9d0",
+              "host": ["{{baseUrl}}"],
+              "path": ["sounds", "64f8a1b2c3d4e5f6a7b8c9d0"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download Sound",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sounds/64f8a1b2c3d4e5f6a7b8c9d0/download",
+              "host": ["{{baseUrl}}"],
+              "path": ["sounds", "64f8a1b2c3d4e5f6a7b8c9d0", "download"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Track Play",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"soundId\": \"64f8a1b2c3d4e5f6a7b8c9d0\",\n  \"duration\": 180\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sounds/play",
+              "host": ["{{baseUrl}}"],
+              "path": ["sounds", "play"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/64f8a1b2c3d4e5f6a7b8c9d0",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "64f8a1b2c3d4e5f6a7b8c9d0"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions",
+      "item": [
+        {
+          "name": "Get Subscription Plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plans",
+              "host": ["{{baseUrl}}"],
+              "path": ["plans"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"64f8a1b2c3d4e5f6a7b8c9d0\",\n  \"paymentMethodId\": \"pm_1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscriptions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current Subscription",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/current",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscriptions", "current"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/current",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscriptions", "current"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Customer Portal Session",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/portal",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscriptions", "portal"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "stats"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Sound",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "title",
+                  "value": "New Track",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Amazing new track",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "64f8a1b2c3d4e5f6a7b8c9d0",
+                  "type": "text"
+                },
+                {
+                  "key": "tags",
+                  "value": "electronic,beat,loop",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/upload",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "upload"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users?page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"admin\",\n  \"subscription\": {\n    \"plan\": \"pro\",\n    \"status\": \"active\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/64f8a1b2c3d4e5f6a7b8c9d0",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users", "64f8a1b2c3d4e5f6a7b8c9d0"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
