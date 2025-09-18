@@ -132,10 +132,24 @@ async function seedUsers() {
       password: 'admin123',
       role: 'admin',
       isActive: true,
+      status: 'active',
     });
 
     await adminUser.save();
     console.log('✅ Admin user created:', adminUser.email);
+
+    // Create another admin user for testing
+    const adminUser2 = new User({
+      name: 'Super Admin',
+      email: 'admin@audiostream.com',
+      password: 'admin123',
+      role: 'admin',
+      isActive: true,
+      status: 'active',
+    });
+
+    await adminUser2.save();
+    console.log('✅ Super Admin user created:', adminUser2.email);
 
     // Create regular user
     const regularUser = new User({
@@ -144,6 +158,7 @@ async function seedUsers() {
       password: 'user123',
       role: 'user',
       isActive: true,
+      status: 'active',
     });
 
     await regularUser.save();
@@ -156,10 +171,24 @@ async function seedUsers() {
       password: 'test123',
       role: 'user',
       isActive: true,
+      status: 'active',
     });
 
     await testUser.save();
     console.log('✅ Test user created:', testUser.email);
+
+    // Create premium user
+    const premiumUser = new User({
+      name: 'Premium User',
+      email: 'premium@audiostream.com',
+      password: 'premium123',
+      role: 'user',
+      isActive: true,
+      status: 'active',
+    });
+
+    await premiumUser.save();
+    console.log('✅ Premium user created:', premiumUser.email);
 
   } catch (error) {
     console.error('❌ Error seeding users:', error);
@@ -472,8 +501,10 @@ async function main() {
   console.log('\n📋 Seeded Data Summary:');
   console.log('👤 Users:');
   console.log('   - admin@audiostreamPro.com (password: admin123) - Admin');
+  console.log('   - admin@audiostream.com (password: admin123) - Super Admin');
   console.log('   - user@audiostreamPro.com (password: user123) - User');
   console.log('   - test@example.com (password: test123) - User');
+  console.log('   - premium@audiostream.com (password: premium123) - Premium User');
   console.log('\n💳 Plans: Free, Pro ($9.99/month), Unlimited ($19.99/month)');
   console.log('🎵 Categories: Electronic, Hip Hop, Rock, Jazz, Classical, Ambient, Pop, Sound Effects');
   console.log('🎧 Sample Audio Files: 5 demo tracks with realistic stats');

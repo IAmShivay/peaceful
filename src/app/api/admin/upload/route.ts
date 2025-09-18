@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { connectDB } from '@/lib/database/connection';
 import { AudioFile } from '@/lib/database/models/AudioFile';
-import { Category } from '@/lib/database/models/Category';
+import Category from '@/lib/database/models/Category';
 
 export async function POST(request: NextRequest) {
   try {
